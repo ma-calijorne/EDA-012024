@@ -12,7 +12,16 @@ Enunciado: Escreva um programa em Rust que encontre o valor máximo em um array 
 
 pub fn encontraMaximo(){
 
-    //Colocar aqui o código
+    let numeros = [10, 20, 5, 23, 42, 15];
+    let mut maximo = numeros[0];
+
+    for &numero in &numeros[1..] {
+        if numero > maximo {
+            maximo = numero;
+        }
+    }
+
+    println!("O valor máximo é {}", maximo);
 }
 
 /***************************************************************************************************
@@ -23,7 +32,13 @@ linguagem para isso.
 
 pub fn reverterArray(){
 
-    //Colocar aqui o código
+    let mut numeros = [1, 2, 3, 4, 5];
+    let tamanho = numeros.len();
+    for i in 0..tamanho / 2 {
+        numeros.swap(i, tamanho - 1 - i);
+    }
+
+    println!("Array revertido: {:?}", numeros);
 }
 
 /***************************************************************************************************
@@ -34,9 +49,13 @@ array de números de ponto flutuante.
 
 pub fn calcularMedia(){
 
-    //Colocar aqui o código
-}
+    let numeros = [10.0, 20.5, 30.0, 40.5, 50.0];
 
+    let soma: f64 = numeros.iter().sum();
+    let media = soma / numeros.len() as f64;
+
+    println!("A média é {}", media);
+}
 /***************************************************************************************************
 Exercício 4: Contar Elementos Negativos
 Enunciado: Escreva um programa em Rust que conte quantos números negativos existem em um
@@ -45,7 +64,17 @@ array de inteiros.
 
 pub fn contarNumerosNegativos(){
 
-    //Colocar aqui o código
+    let numeros = [10, -20, -5, 23, 42, -15, 0];
+
+    let mut contador_negativos = 0;
+
+    for &numero in &numeros {
+        if numero < 0 {
+            contador_negativos += 1;
+        }
+    }
+
+    println!("Existem {} números negativos no array.", contador_negativos);
 }
 
 /***************************************************************************************************
@@ -56,7 +85,22 @@ presente em um array.
 
 pub fn verificarPresencaElemento(){
 
-    //Colocar aqui o código
+    let numeros = [1, 2, 3, 4, 5];
+    let alvo = 3;
+    let mut encontrado = false;
+
+    for &numero in &numeros {
+        if numero == alvo {
+            encontrado = true;
+            break;
+        }
+    }
+
+    if encontrado {
+        println!("O número {} está presente no array.", alvo);
+    } else {
+        println!("O número {} não foi encontrado no array.", alvo);
+    }
 }
 
 /***************************************************************************************************
@@ -73,7 +117,13 @@ números de 1 a 5, um de cada vez, usando um loop.
 
 pub fn adicionarElemento(){
 
-    //Colocar aqui o código
+    let mut numeros = Vec::new();
+
+    for i in 1..=5 {
+        numeros.push(i);
+    }
+
+    println!("Vetor: {:?}", numeros);
 }
 
 /***************************************************************************************************
@@ -84,7 +134,13 @@ valor 3 de um vetor de inteiros.
 
 pub fn removerElementoEspecifico(){
 
-    //Colocar aqui o código
+    let mut numeros = vec![1, 2, 3, 4, 3, 5];
+
+    if let Some(pos) = numeros.iter().position(|&x| x == 3) {
+        numeros.remove(pos);
+    }
+
+    println!("Vetor após remover o primeiro '3': {:?}", numeros);
 }
 
 /***************************************************************************************************
@@ -95,7 +151,10 @@ em um vetor de números inteiros.
 
 pub fn calcularSomaElementos(){
 
-    //Colocar aqui o código
+    let numeros = vec![10, 20, 30, 40, 50];
+    let soma: i32 = numeros.iter().sum();
+
+    println!("A soma dos elementos é {}", soma);
 }
 
 /***************************************************************************************************
@@ -104,6 +163,19 @@ Enunciado: Escreva um programa em Rust que encontre o menor elemento em um vetor
 inteiros.
 ***************************************************************************************************/
 
+pub fn encontrarMenorNumero(){
+
+    let numeros = vec![24, 42, 12, 8, 15];
+    let mut menor = numeros[0];
+
+    for &valor in &numeros {
+        if valor < menor {
+            menor = valor;
+        }
+    }
+
+    println!("O menor número é {}", menor);
+}
 //Código Resposta
 
 /***************************************************************************************************
@@ -112,7 +184,13 @@ Enunciado: Escreva um programa em Rust que, dado um vetor de números inteiros, 
 um novo vetor contendo apenas os elementos pares do vetor original.
 ***************************************************************************************************/
 
-//Código Resposta
+pub fn filtrarELementosPares(){
+
+    let numeros = vec![1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+    let pares: Vec<i32> = numeros.into_iter().filter(|x| x % 2 == 0).collect();
+
+    println!("Números pares: {:?}", pares);
+}
 
 
 /***************************************************************************************************
@@ -127,7 +205,21 @@ Enunciado: Defina uma struct Carro que tenha três campos: marca, modelo, e ano.
 Crie uma instância dessa struct e imprima seus valores no console.
 ***************************************************************************************************/
 
-//Código Resposta
+// struct Carro {
+//     marca: String,
+//     modelo: String,
+//     ano: u16,
+// }
+//
+// pub fn definirInstanciaStruct() {
+//     let meu_carro = Carro {
+//         marca: String::from("Toyota"),
+//         modelo: String::from("Corolla"),
+//         ano: 2020,
+//     };
+//
+//     println!("Marca: {}, Modelo: {}, Ano: {}", meu_carro.marca, meu_carro.modelo, meu_carro.ano);
+// }
 
 /***************************************************************************************************
 Exercício 2: Adicionar Método à Struct
@@ -136,7 +228,28 @@ retorna uma string formatada com todos os dados do carro. Chame este método par
 instância de Carro e imprima o resultado.
 ***************************************************************************************************/
 
-//Código Resposta
+struct Carro {
+    marca: String,
+    modelo: String,
+    ano: u16,
+}
+
+impl Carro {
+    fn descricao(&self) -> String {
+
+        format!("{} {} {}", self.marca, self.modelo, self.ano)
+    }
+}
+
+pub fn adicionarMetodoStruct() {
+    let meu_carro = Carro {
+        marca: String::from("Toyota"),
+        modelo: String::from("Corolla"),
+        ano: 2020,
+    };
+
+    println!("{}", meu_carro.descricao());
+}
 
 /***************************************************************************************************
 Exercício 3: Struct com Enum
@@ -145,7 +258,33 @@ com variantes Pendente, Concluido). Adicione um método à struct Pedido que imp
 mensagem diferente dependendo do status do pedido.
 ***************************************************************************************************/
 
-//Código Resposta
+struct Pedido {
+    nome_do_item: String,
+    status: StatusPedido,
+}
+
+enum StatusPedido {
+    Pendente,
+    Concluido,
+}
+
+impl Pedido {
+    fn verificar_status(&self) {
+        match self.status {
+            StatusPedido::Pendente => println!("{} está pendente.", self.nome_do_item),
+            StatusPedido::Concluido => println!("{} foi concluído!", self.nome_do_item),
+        }
+    }
+}
+
+pub fn structComEnum() {
+    let meu_pedido = Pedido {
+        nome_do_item: String::from("Livro Rust"),
+        status: StatusPedido::Concluido,
+    };
+
+    meu_pedido.verificar_status();
+}
 
 /***************************************************************************************************
 Exercício 4: Struct com Lifetimes
@@ -154,7 +293,23 @@ sendo referências a strings com um lifetime específico. Crie uma instância de
 uma função que aceita uma referência a Livro e imprime o título e o autor.
 ***************************************************************************************************/
 
-//Código Resposta
+struct Livro<'a> {
+    titulo: &'a str,
+    autor: &'a str,
+}
+
+fn exibir_livro(livro: &Livro) {
+    println!("'{}' por {}", livro.titulo, livro.autor);
+}
+
+pub fn lifetimes() {
+    let livro_rust = Livro {
+        titulo: "The Rust Programming Language",
+        autor: "Steve Klabnik and Carol Nichols",
+    };
+
+    exibir_livro(&livro_rust);
+}
 
 /***************************************************************************************************
 Exercício 5: Struct com Vários Métodos
@@ -163,4 +318,31 @@ incrementar e decrementar o valor, além de um método que retorna o valor atual
 dessa struct incrementando, decrementando o valor e exibindo o valor atual.
 ***************************************************************************************************/
 
-//Código Resposta
+struct Contador {
+    valor: i32,
+}
+
+impl Contador {
+    fn incrementar(&mut self) {
+        self.valor += 1;
+    }
+
+    fn decrementar(&mut self) {
+        self.valor -= 1;
+    }
+
+    fn valor_atual(&self) -> i32 {
+        self.valor
+    }
+}
+
+pub fn structVariosMetodos() {
+    let mut meu_contador = Contador { valor: 0 };
+
+    meu_contador.incrementar();
+    meu_contador.incrementar();
+    meu_contador.decrementar();
+
+    println!("Valor atual: {}", meu_contador.valor_atual());
+}
+

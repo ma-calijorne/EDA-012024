@@ -15,7 +15,8 @@ fn main() {
     // basics::controleFluxo::controleFluxoForInteradores_into_iter();
     // tad::tiposAbstratosDados::tadVector_3();
     // exerciciosSalaAula::Aula08032024::principal()
-    exerciciosSalaAula::exercicioCalculoAreaCirculo::calculoAreaCirculo()
+    // exerciciosSalaAula::exercicioCalculoAreaCirculo::calculoAreaCirculo()
+    exerciciosSalaAula::Aula14032024::encontraMaximo()
 }
 
 fn helloWorld(){
