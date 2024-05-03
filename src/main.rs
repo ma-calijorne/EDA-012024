@@ -3,6 +3,8 @@ mod heap_stack;
 mod tad;
 mod vetoresArrays;
 mod exerciciosSalaAula;
+// mod hashMaps;
+mod arvore_binaria;
 
 fn main() {
 
@@ -16,7 +18,7 @@ fn main() {
     // tad::tiposAbstratosDados::tadVector_3();
     // exerciciosSalaAula::Aula08032024::principal()
     // exerciciosSalaAula::exercicioCalculoAreaCirculo::calculoAreaCirculo()
-    exerciciosSalaAula::Aula14032024::encontraMaximo()
+    arvore_binaria::arvore_avl::main()
 }
 
 fn helloWorld(){
